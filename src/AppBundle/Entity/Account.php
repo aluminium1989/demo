@@ -31,7 +31,7 @@ class Account implements UserInterface, \Serializable
     private $login;
 
     /**
-     * @ORM\Column(type="string", length=16)
+     * @ORM\Column(type="string", length=16, nullable=true)
      * @Assert\Length(min = 2, max = 16)
      * @Assert\Regex("/[a-zA-Z]/")
      */
@@ -48,6 +48,7 @@ class Account implements UserInterface, \Serializable
     /**
      * @Assert\Length(min = 1)
      * @Assert\Email()
+     * @Assert\NotBlank()
      * @ORM\Column(type="string", length=1024, nullable=false)
      */
     private $email;
@@ -67,10 +68,11 @@ class Account implements UserInterface, \Serializable
 
     /**
      * Year of birth
-     * @ORM\Column(type="integer", length=4)
+     * @ORM\Column(type="integer", length=4, nullable=true)
      * @Assert\LessThanOrEqual(2010)
      * @Assert\GreaterThanOrEqual(1900)
      * @Assert\Regex("/[0-9]/")
+     * @Assert\NotBlank()
      */
     private $yob;
 

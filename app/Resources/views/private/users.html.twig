@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Login</th>
+            <th>First name</th>
+            <th>Last name</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for acc in accounts %}
+            <tr>
+                <th>{{ acc.getId() }}</th>
+                <th>{{ acc.getLogin() }}</th>
+                <th>{{ acc.getFirstName() }}</th>
+                <th>{{ acc.getLastName() }}</th>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+{% block stylesheets %}
+{% endblock %}

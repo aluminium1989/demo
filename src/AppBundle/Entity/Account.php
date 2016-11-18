@@ -32,7 +32,7 @@ class Account implements UserInterface, \Serializable
 
     /**
      * @ORM\Column(type="string", length=16)
-     * @Assert\Length(min = 4, max = 16)
+     * @Assert\Length(min = 2, max = 16)
      * @Assert\Regex("/[a-zA-Z]/")
      */
     private $firstName;
@@ -41,7 +41,7 @@ class Account implements UserInterface, \Serializable
      * @Assert\NotBlank()
      * @Assert\Length(min = 4, max = 30)
      * @ORM\Column(type="string", length=16, nullable=false)
-     * @Assert\Regex("/[a-zA-Z]/")
+     * @Assert\Regex("/[.*]/")
      */
     private $lastName;
 

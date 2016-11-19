@@ -79,7 +79,7 @@ class AccountController extends Controller
             return $this->redirectToRoute('homepage');
         }
 
-        return $this->_renderTemplate($registrationForm, $this->createForm(LoginType::class));
+        return $this->_renderTemplate($registrationForm, $this->createForm(LoginType::class, null, array('action' => $this->generateUrl('login'))));
     }
 
     /**

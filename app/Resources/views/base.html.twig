@@ -11,35 +11,42 @@
     <h1 class="text-center">Account Base Application</h1>
     <div class="row">&nbsp;</div>
     <div class="row">
-        <div class="col-md-10"></div>
+        <div class="col-md-10">
+
+            <div class="row">
+                {% for flash_message in app.session.flashBag.get('success') %}
+                    <p class="text-center bg-danger">
+                        {{ flash_message }}
+                    </p>
+                {% endfor %}
+                {% for flash_message in app.session.flashBag.get('error') %}
+                    <p class="text-center bg-success">
+                        {{ flash_message }}
+                    </p>
+                {% endfor %}
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-10">
+                        {% block body %}{% endblock %}
+                    </div>
+                    <div class="col-md-1"></div>
+                </div>
+            </div>
+
+        </div>
         <div class="col-md-2">
             {% if is_granted("ROLE_USER") %}
-                Hi, {{ app.user.login }}! <a href="{{ logout_path() }}">Logout</a>
+                Hi, {{ app.user.login }}!
+                <ul class="list-unstyled">
+                    <li><a href="{{ path('req_new') }}">Create request</a></li>
+                    <li><a href="{{ path('userlist') }}">Users</a></li>
+                    <li><a href="{{ logout_path() }}">Logout</a></li>
+                </ul>
             {% endif %}
         </div>
     </div>
-    <div class="row">
-        {% for flash_message in app.session.flashBag.get('success') %}
-            <p class="text-center bg-danger">
-                {{ flash_message }}
-            </p>
-        {% endfor %}
-        {% for flash_message in app.session.flashBag.get('error') %}
-                <p class="text-center bg-success">
-                    {{ flash_message }}
-                </p>
-        {% endfor %}
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-10">
-                {% block body %}{% endblock %}
-            </div>
-            <div class="col-md-1"></div>
-        </div>
-    </div>
-
         {% block javascripts %}{% endblock %}
     <style type="text/css">
     .required:after {

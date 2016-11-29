@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Request list</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Email</th>
+                <th>Telephone</th>
+                <th>Request</th>
+                <th>Date</th>
+                <th>Created</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for req in reqs %}
+            <tr>
+                <td>{{ req.firstName }}</td>
+                <td>{{ req.lastName }}</td>
+                <td>{{ req.email }}</td>
+                <td>{{ req.telephone }}</td>
+                <td>{{ req.request }}</td>
+                <td>{% if req.requestDate %}{{ req.requestDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if req.createdAt %}{{ req.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('req_show', { 'id': req.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('req_edit', { 'id': req.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('req_new') }}">Create a new req</a>
+        </li>
+    </ul>
+{% endblock %}

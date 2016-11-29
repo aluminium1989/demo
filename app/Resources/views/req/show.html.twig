@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Requests</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Firstname</th>
+                <td>{{ req.firstName }}</td>
+            </tr>
+            <tr>
+                <th>Lastname</th>
+                <td>{{ req.lastName }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ req.email }}</td>
+            </tr>
+            <tr>
+                <th>Telephone</th>
+                <td>{{ req.telephone }}</td>
+            </tr>
+            <tr>
+                <th>Text</th>
+                <td>{{ req.request }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{% if req.requestDate %}{{ req.requestDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Created at</th>
+                <td>{% if req.createdAt %}{{ req.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('req_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('req_edit', { 'id': req.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
